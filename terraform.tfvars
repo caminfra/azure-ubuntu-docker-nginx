@@ -1,0 +1,5 @@
+resource_group_name = "rg-terraform-lab"
+vnet_name           = "vnet-cam-lab"
+subnet_name         = "subnet-app"
+nsg_name            = "nsg-cam-lab"
+ssh_public_key_path = "C:/Users/csims/.ssh/azure_key.pub"
