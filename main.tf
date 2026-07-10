@@ -83,6 +83,7 @@ resource "azurerm_linux_virtual_machine" "ubuntu_vm" {
   name                = var.vm_name
   resource_group_name = data.azurerm_resource_group.rg.name
   location            = data.azurerm_resource_group.rg.location
+  custom_data = base64encode(file("cloud-init.yaml"))
 
   size = "Standard_B1s"
 

@@ -1,0 +1,9 @@
+#cloud-config
+
+packages:
+  - docker.io
+
+runcmd:
+  - systemctl enable docker
+  - systemctl start docker
+  - docker run -d -p 80:80 --restart unless-stopped nginx
