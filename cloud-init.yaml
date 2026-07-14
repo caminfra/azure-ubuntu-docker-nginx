@@ -1,9 +1,14 @@
 #cloud-config
 
-packages:
-  - docker.io
+package_update: true
 
 runcmd:
+  - apt-get update
+  - apt-get install -y docker.io curl
   - systemctl enable docker
   - systemctl start docker
-  - docker run -d -p 80:80 --restart unless-stopped nginx
+
+  - mkdir -p /opt/nginx-site
+  - curl -o /opt/nginx-site/index.html https://raw.githubusercontent.com/caminfra/azure-ubuntu-docker-nginx/main/index.html
+
+  - docker run -d --name nginx --restart unless-stopped -p 80:80 -v /opt/nginx-site:/usr/share/nginx/html nginx
